@@ -14,6 +14,8 @@ public class RayCast : MonoBehaviour {
         if(item != null){
             Light itemLight = item.GetComponent<Light>();
             itemLight.enabled = true;
+            TextMesh text = item.GetComponentInChildren<TextMesh>();
+            text.GetComponent<MeshRenderer>().enabled = true;
         }
 	}
 
