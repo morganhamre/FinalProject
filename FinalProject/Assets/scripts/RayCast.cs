@@ -14,8 +14,12 @@ public class RayCast : MonoBehaviour {
         if(item != null){
             Light itemLight = item.GetComponent<Light>();
             itemLight.enabled = true;
-            TextMesh text = item.GetComponentInChildren<TextMesh>();
-            text.GetComponent<MeshRenderer>().enabled = true;
+            TextMesh[] text = item.GetComponentsInChildren<TextMesh>();
+            text[0].GetComponent<MeshRenderer>().enabled = true;
+            text[1].GetComponent<MeshRenderer>().enabled = true;
+
+            //poem(item);
+           
         }
 	}
 
@@ -29,6 +33,15 @@ public class RayCast : MonoBehaviour {
         else{
             return null;
         } 
+    }
+
+
+    void poem(GameObject obj){
+        if (obj.tag == "StopSign")
+        {
+            TextMesh text = obj.GetComponentInChildren<TextMesh>();
+            text.GetComponent<MeshRenderer>().enabled = true;
+        }
     }
 
 }
