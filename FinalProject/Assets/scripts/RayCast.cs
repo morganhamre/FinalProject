@@ -5,8 +5,10 @@ using UnityEngine;
 public class RayCast : MonoBehaviour {
 
     public GameObject item;
+    public GameObject door;
     public float rayDistance = 20F;
     public LayerMask layerMask;
+    public int numObjects = 0; //keeps track of the number of objects found
 	
 	// Update is called once per frame
 	void Update () {
@@ -17,9 +19,10 @@ public class RayCast : MonoBehaviour {
             TextMesh[] text = item.GetComponentsInChildren<TextMesh>();
             text[0].GetComponent<MeshRenderer>().enabled = true;
             text[1].GetComponent<MeshRenderer>().enabled = true;
-
-            //poem(item);
-           
+            numObjects++;
+        }
+        if(numObjects == 4){
+            DestroyObject(door);
         }
 	}
 
@@ -33,15 +36,6 @@ public class RayCast : MonoBehaviour {
         else{
             return null;
         } 
-    }
-
-
-    void poem(GameObject obj){
-        if (obj.tag == "StopSign")
-        {
-            TextMesh text = obj.GetComponentInChildren<TextMesh>();
-            text.GetComponent<MeshRenderer>().enabled = true;
-        }
     }
 
 }
