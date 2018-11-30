@@ -22,7 +22,7 @@ public class RayCast : MonoBehaviour {
             numObjects++;
         }
         if(numObjects == 4){
-            DestroyObject(door);
+            Object.Destroy(door);
         }
 	}
 
