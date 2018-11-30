@@ -5,10 +5,10 @@ using UnityEngine;
 public class RayCast : MonoBehaviour {
 
     public GameObject item;
-    public GameObject door;
+    public GameObject door1;
     public float rayDistance = 20F;
     public LayerMask layerMask;
-    public int numObjects = 0; //keeps track of the number of objects found
+    public Dictionary<GameObject, int> found = new Dictionary<GameObject, int>(); //keep track of items found
 	
 	// Update is called once per frame
 	void Update () {
@@ -19,10 +19,14 @@ public class RayCast : MonoBehaviour {
             TextMesh[] text = item.GetComponentsInChildren<TextMesh>();
             text[0].GetComponent<MeshRenderer>().enabled = true;
             text[1].GetComponent<MeshRenderer>().enabled = true;
-            numObjects++;
+
+            if(!found.ContainsKey(item)){
+                found.Add(item, 1);
+            }
         }
-        if(numObjects == 4){
-            Object.Destroy(door);
+
+        if(found.Count == 4){
+            Object.Destroy(door1);
         }
 	}
 
