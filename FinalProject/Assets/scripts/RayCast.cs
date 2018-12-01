@@ -16,9 +16,16 @@ public class RayCast : MonoBehaviour {
         if(item != null){
             Light itemLight = item.GetComponent<Light>();
             itemLight.enabled = true;
-            TextMesh[] text = item.GetComponentsInChildren<TextMesh>();
-            text[0].GetComponent<MeshRenderer>().enabled = true;
-            text[1].GetComponent<MeshRenderer>().enabled = true;
+            if(item.tag == "english"){
+                TextMesh[] text = item.GetComponentsInChildren<TextMesh>();
+                text[0].GetComponent<MeshRenderer>().enabled = true;
+                text[1].GetComponent<MeshRenderer>().enabled = true;
+            } else if(item.tag == "science"){
+                TextMesh[] text = item.GetComponentsInChildren<TextMesh>();
+                text[0].GetComponent<MeshRenderer>().enabled = false;
+                text[1].GetComponent<MeshRenderer>().enabled = false;
+            }
+
 
             if(!found.ContainsKey(item)){
                 found.Add(item, 1);
