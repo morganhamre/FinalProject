@@ -27,7 +27,6 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         status = Status.Inactive;
-        //Time.timeScale = 1;
         UIPanel.SetActive(false);
     }
 
