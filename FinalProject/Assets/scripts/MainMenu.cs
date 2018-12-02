@@ -31,7 +31,7 @@ public class MainMenu : MonoBehaviour
         UIPanel.SetActive(false);
     }
 
-    public void LoadScene(string scene)
+    public static void LoadScene(string scene)
     {
         SceneManager.LoadScene(scene);
     }

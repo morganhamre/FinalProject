@@ -8,8 +8,10 @@ public class RayCast : MonoBehaviour {
     public GameObject door1;
     public float rayDistance = 20F;
     public LayerMask layerMask;
-    public Dictionary<GameObject, int> found = new Dictionary<GameObject, int>(); //keep track of items found
-	
+    public Dictionary<GameObject, int> englishFound = new Dictionary<GameObject, int>(); //keep track of items found
+    public Dictionary<GameObject, int> scienceFound = new Dictionary<GameObject, int>(); //keep track of items found
+
+
 	// Update is called once per frame
 	void Update () {
         item = checkHit();
@@ -18,22 +20,39 @@ public class RayCast : MonoBehaviour {
             itemLight.enabled = true;
             if(item.tag == "english"){
                 TextMesh[] text = item.GetComponentsInChildren<TextMesh>();
+                //enable found text
                 text[0].GetComponent<MeshRenderer>().enabled = true;
+                //enable word on poem
                 text[1].GetComponent<MeshRenderer>().enabled = true;
+
+                if (!englishFound.ContainsKey(item))
+                {
+                    englishFound.Add(item, 1);
+                }
+
             } else if(item.tag == "science"){
                 TextMesh[] text = item.GetComponentsInChildren<TextMesh>();
-                text[0].GetComponent<MeshRenderer>().enabled = false;
+                //enable found text
+                text[0].GetComponent<MeshRenderer>().enabled = true;
+                //disable word on list
                 text[1].GetComponent<MeshRenderer>().enabled = false;
+
+                if (!scienceFound.ContainsKey(item))
+                {
+                    scienceFound.Add(item, 1);
+                }
             }
 
 
-            if(!found.ContainsKey(item)){
-                found.Add(item, 1);
-            }
+
         }
 
-        if(found.Count == 4){
+        if(englishFound.Count == 4){
             Object.Destroy(door1);
+        }
+
+        if(scienceFound.Count == 5){
+            MainMenu.LoadScene("Win");
         }
 	}
 
